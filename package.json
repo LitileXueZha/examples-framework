@@ -1,0 +1,24 @@
+{
+  "name": "frameworks",
+  "version": "1.0.0",
+  "description": "了解一点，多多益善。",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@vue/cli": "^4.0.5",
+    "create-react-app": "^3.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LitileXueZha/frameworks.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LitileXueZha/frameworks/issues"
+  },
+  "homepage": "https://github.com/LitileXueZha/frameworks#readme"
+}
