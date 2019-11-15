@@ -22,7 +22,7 @@ class Foo extends React.Component {
         this.setState({});
     }
     render() {
-        // 试用
+        // 使用
         return <div>{this.state}</div>;
     }
 }
@@ -42,5 +42,30 @@ function Foo(props) {
 }
 ```
 
+## Vue 全家桶聊天室
+
+[Github 地址](https://github.com/brandiqa/vue-chatkit)
+
++ `vue-cli` 上手
++ `vue-router` + `vuex` 使用
++ 消息推送服务 `Pusher`
+
+```javascript
+import Vue from 'vue';
+
+import App from './App.vue';
+
+// 安装扩展
+Vue.use(Router);
+Vue.use(Vuex);
+
+// 配置
+new Vue({
+    el: '#app',
+    router,
+    store,
+    render: h => h(App),
+});
+```
 
 文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
