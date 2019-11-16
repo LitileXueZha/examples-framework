@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  appID: '1:13839092631:web:9f8fa7631c7e02bcd152d2',
+  appID: 'e52c11c0fba16ff11dfa75d40842f0c3',
   gKey: '',
   config: {
     apiKey: 'AIzaSyB6vqqhtrIfv7009Gu5gonIP7bpMzxNtFE',
