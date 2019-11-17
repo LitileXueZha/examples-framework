@@ -128,4 +128,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
 > 没有对比，就没有伤害。相比 `create-react-app` 和 `@vue/cli`，angular 这个命令工具一次性生成的东西太多了，不能好好地相处了
 
+## Svelte 版 Todo 示例
+
+> 首先了解下 `Svelte`，推荐官方[入门教程](https://svelte.dev/tutorial)（交互式学习非常赞）
+
+[Github 地址](https://github.com/seeschweiler/svelte-todo-app)、[Svelte](https://svelte.dev/)
+
++ 类 vue 式框架 svelte3。编译式框架，运行时无 svelte 更苗条
++ 自定义模板语法。我晕~
++ 脚手架 rollup.js
+
+```javascript
+// main.js 入口文件
+import App from './App.svelte';
+
+const app = new App({
+    target: document.getElementById('app'),
+    props: {},
+});
+
+export default app;
+```
+
+```svelte
+<!-- App.svelte -->
+<script>
+    import TodoItem from './TodoItem.svelte';
+
+    let todos = [...];
+
+    // 相应式渲染
+    $: length = todos.length;
+</script>
+
+<style></style>
+
+<!-- 自定义语法 -->
+{#each todos as todo (todo.id)}
+    <div class="todo-item">
+        <TodoItem {...todo} on:deleteTodo={handleDeleteTodo} />
+    </div>
+{/each}
+<p>总计：{length}条</p>
+```
+
 文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
