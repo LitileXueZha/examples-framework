@@ -1,0 +1,25 @@
+{
+  "name": "nuxtjs-multilanguage-website",
+  "version": "2.0.0",
+  "description": "Nuxt.js project",
+  "author": "Alexander Feiglstorfer <delooks@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "storyblok-nuxt": "^0.0.5",
+    "marked": "^0.3.12",
+    "cross-env": "^5.2.0",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "css-loader": "^2.1.0",
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.11.0",
+    "sass-loader": "^7.1.0"
+  }
+}

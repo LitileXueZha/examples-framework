@@ -227,4 +227,64 @@ const withSass = require('@zeit/next-sass');
 module.exports = withTypescript(withSass());
 ```
 
+## Nuxt.js 构建 Vue 版博客
+
+> Nuxt.js 很大程度上借鉴了 Next.js，约定又多了些。。。下面这个示例和 storyblok 网站强关联，看的晕头转向，建议直接啃文档好了
+
+[Github 地址](https://github.com/storyblok/nuxtjs-multilanguage-website)、[Nuxt.js](https://nuxtjs.org/)
+
++ 服务端渲染 Vue 框架 Nuxt.js
++ 路由、数据 fetch、静态页面导出等等
++ 中间件、插件
++ storyblok（模块式 CMS）
+
+```vue
+<!-- ./pages/index.vue -->
+<template>
+    <main>...</main>
+</template>
+
+<script>
+export default {
+    head: {}, // 页面自定义 <head>
+    data() {
+        // 写死的数据也会被服务端渲染
+        return {};
+    },
+    // Nuxt.js 提供服务端渲染的一个方法，这里可以数据注入
+    async asyncData(ctx) {
+        return await fetch();
+    },
+};
+</script>
+
+<style lang="scss">
+    $theme: #193E23;
+
+    @mixin hello {}
+</style>
+```
+
+```javascript
+// nuxt.config.js
+// 框架主要依赖目录结构，这边其实基本不需要配置了
+module.exports = {
+    router: {
+        // 路由中间件
+        middleware: 'languageDetection',
+    },
+    // 返回 <head> 信息。也可以在单个页面中定义
+    head: {
+        title: 'mywebsite',
+        meta: [{ charset: 'utf-8' }],
+    },
+    // 插件。自己写的功能模块
+    plugins: ['~/plugins/components'],
+    // 第三方库
+    modules: [
+        ['storyblok-nuxt', {}],
+    ],
+};
+```
+
 文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
