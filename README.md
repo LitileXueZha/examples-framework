@@ -185,7 +185,7 @@ export default app;
 
 ```javascript
 // ./pages/index.js
-// Next.js 基础 `pages` 目录下的 `.js` 文件渲染路由，无需额外的路由配置
+// Next.js 基于 `pages` 目录下的 `.js` 文件渲染路由，无需额外的路由配置
 import React from 'react';
 import Head from 'next/head'; // 渲染 head 的 next.js 组件。例如引入第三方 script
 
@@ -285,6 +285,53 @@ module.exports = {
         ['storyblok-nuxt', {}],
     ],
 };
+```
+
+## Gatsby 助力站点开发
+
+![gatsby 工作图](https://tao-1252397519.file.myqcloud.com/img-note/gatsby.jpg)
+
+[Github 地址](https://bitbucket.org/hauyeung/react-gatsby-tutorial-app)、[Gatsby](https://www.gatsbyjs.org/)、[GraphQL](https://graphql.org/)
+
++ 开发框架 Gatsby，众多功能的组合体
++ 查询语言 GraphQL。或许 REST API 下一代
++ 插件系统
++ 使用 `.md` 文件渲染
++ 动态路由、数据控制
+
+```javascript
+// templates/blog-list.js
+import React from "react"
+import { graphql, Link } from "gatsby"
+
+const BlogList = (props) => {
+    // graphql 传入的数据
+    const posts = props.data.allMarkdownRemark.edges;
+
+    return (
+        <Layout>
+            {posts.map(post => <Post />)}
+        </Layout>
+    );
+};
+
+export default BlogList;
+// graphql 语法，查询数据
+export const blogListQuery = graphql`
+  query blogListQuery($skip: Int!, $limit: Int!) {
+    allMarkdownRemark {
+      edges {
+        node {
+          frontmatter {
+            title
+            date
+          }
+          html
+        }
+      }
+    }
+  }
+`
 ```
 
 文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
