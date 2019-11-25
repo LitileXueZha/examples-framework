@@ -291,7 +291,7 @@ module.exports = {
 
 ![gatsby 工作图](https://tao-1252397519.file.myqcloud.com/img-note/gatsby.jpg)
 
-[Github 地址](https://bitbucket.org/hauyeung/react-gatsby-tutorial-app)、[Gatsby](https://www.gatsbyjs.org/)、[GraphQL](https://graphql.org/)
+[源码地址](https://bitbucket.org/hauyeung/react-gatsby-tutorial-app)、[Gatsby](https://www.gatsbyjs.org/)、[GraphQL](https://graphql.org/)
 
 + 开发框架 Gatsby，众多功能的组合体
 + 查询语言 GraphQL。或许 REST API 下一代
@@ -332,6 +332,83 @@ export const blogListQuery = graphql`
     }
   }
 `
+```
+
+```javascript
+// gatsby-node.js
+// 启动服务时运行的代码。动态创建页面在此
+exports.createPages = async ({ graphql, actions }) => {
+    const { createPage } = actions;
+
+    // 查询数据
+    await graphql;
+    // 创建页面
+    createPage({
+        path: '/index',
+        component: 'templates/blog-list.js',
+        context: {},
+    });
+};
+```
+
+## Gridsome 助力站点开发
+
+> Vue 版的 gatsby。
+
+[Github 地址](https://github.com/lauragift21/gridsome-blog)、[Gridsome](https://gridsome.org/)
+
+```vue
+<!-- pages/Index.vue -->
+<!-- pages 目录下自动被渲染成路由 -->
+<template>
+    <Layout>
+        <PostList v:for="$page.allPost">
+    </Layout>
+</template>
+
+<script>
+import PostList from '~/components/PostList.vue';
+
+export default {
+    components: { PostList },
+    metaInfo: {},
+};
+</script>
+
+<page-query>
+query {
+    allPost {
+        totalCount
+        edges {
+            node
+        }
+    }
+}
+</page-query>
+```
+
+```javascript
+// gridsome.config.js
+// 一些关键性配置
+module.exports = {
+  siteName: 'Gridsome',
+  plugins: [{
+    // 文件系统。这里也可以配置路由
+    use: '@gridsome/source-filesystem',
+    options: {
+      path: 'content/posts/**/*.md',
+      typeName: 'Post',
+      route: '/blog/:slug'
+    },
+  }],
+  transformers: {
+    // 转 markdown
+    remark: {
+      externalLinksTarget: '_blank',
+      plugins: ['@gridsome/remark-prismjs']
+    }
+  },
+}
 ```
 
 文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
