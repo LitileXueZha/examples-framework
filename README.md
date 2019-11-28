@@ -2,6 +2,8 @@
 
 了解一点，多多益善。
 
+文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
+
 ## 基于 React Hooks 的电影搜索
 
 [Github 地址](https://github.com/samie820/hooks-movie-app)
@@ -184,7 +186,7 @@ export default app;
 + 动态路由 & 代码分割
 
 ```javascript
-// ./pages/index.js
+// pages/index.js
 // Next.js 基于 `pages` 目录下的 `.js` 文件渲染路由，无需额外的路由配置
 import React from 'react';
 import Head from 'next/head'; // 渲染 head 的 next.js 组件。例如引入第三方 script
@@ -239,7 +241,7 @@ module.exports = withTypescript(withSass());
 + storyblok（模块式 CMS）
 
 ```vue
-<!-- ./pages/index.vue -->
+<!-- pages/index.vue -->
 <template>
     <main>...</main>
 </template>
@@ -293,7 +295,7 @@ module.exports = {
 
 [源码地址](https://bitbucket.org/hauyeung/react-gatsby-tutorial-app)、[Gatsby](https://www.gatsbyjs.org/)、[GraphQL](https://graphql.org/)
 
-+ 开发框架 Gatsby，众多功能的组合体
++ 开发框架 Gatsby，众多功能的组合体
 + 查询语言 GraphQL。或许 REST API 下一代
 + 插件系统
 + 使用 `.md` 文件渲染
@@ -411,4 +413,82 @@ module.exports = {
 }
 ```
 
-文章出处：https://dev.to/simonholdorf/9-projects-you-can-do-to-become-a-frontend-master-in-2020-n2h
+## quasar 音乐播放器 app
+
+> 相比于 ReactNative 的 `Learn once, write anywhere`，这个基于 Vue 的框架却是 `Write once, run anywhere`，开发 app 起来就像是直接开发 web 项目
+>
+> 再对比国内乱糟糟的小程序环境，产生的多端框架诸如 uni-app、taro 等，感觉不是一个档次的。技术的发展由此可见
+
+[Github 地址](https://github.com/syonip/quasar-wavesurfer-audio-player)、[Quasar](https://quasar.dev/)、[Apache Cordova](https://cordova.apache.org/)
+
++ 跨平台框架 quasar
++ app 模式下的跨平台 cordova。应该说它是 app 开发的核心，quasar 只是基于它封装了层 vue 的用法
++ 内置 material 风格的 UI 组件
++ 服务端渲染（ssr）等其它模式
+
+```vue
+<!-- layouts/MyLayout.vue -->
+<template>
+    <q-layout>
+        <q-header></q-header>
+        <q-page-container>
+            <p>My first quasar app.</p>
+        </q-page-container>
+    </q-layout>
+</template>
+
+<script>
+export default {
+    name: 'MyLayout',
+    methods: {
+        onNavigate() {
+            // 页面的跳转没有原生的体验好
+            this.$router.push('/home');
+        },
+    },
+}
+</script>
+```
+
+```javascript
+// quasar.conf.js
+// 简单的配置往往造成的副作用就是多处约定，不过权衡下来完全可以接受
+module.exports = function (ctx) {
+  return {
+    // app boot file (/src/boot)
+    // --> boot files are part of "main.js"
+    boot: [],
+    css: ['app.styl'],
+    framework: {
+      // all: true, // includes everything; for dev only!
+      components: [
+        'QLayout',
+        'QHeader',
+        'QPageContainer',
+      ],
+    },
+    build: {
+      scopeHoisting: true,
+      // vueRouterMode: 'history',
+      // vueCompiler: true,
+      // gzip: true,
+      // analyze: true,
+      // extractCSS: false,
+      extendWebpack (cfg) {}
+    },
+    devServer: {
+      https: true,
+      // port: 8080,
+      open: true
+    },
+    // quasar 极简化了 cordova 的配置，因此一些高级用法还得官网找，例如原生 api 的使用
+    cordova: {
+      // id: 'org.cordova.quasar.app',
+    },
+  },
+};
+```
+
+## 截至时间 2019.11.28
+
+以上只是前端茫茫大海中的一粟，未来的滚轮推动着我们学习，共勉之。
